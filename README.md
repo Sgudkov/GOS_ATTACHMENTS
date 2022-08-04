@@ -13,7 +13,9 @@
 *Want to get all urls of BO FMBU*
 ```abap  
   DATA: lo_attachments TYPE REF TO lcl_gos_attachments,
-		lt_attachmetns TYPE lcl_gos_attachments=>mty_t_borid.
+        ls_object      TYPE lcl_gos_attachments=>mty_s_borid,
+        lt_attachmetns TYPE lcl_gos_attachments=>mty_t_borid,
+        lo_witem       TYPE REF TO cl_browser_item.
 		
   CREATE OBJECT lo_attachments.	
   
@@ -38,7 +40,35 @@
 
 ![alt text](https://github.com/Sgudkov/GOS_ATTACHMENTS/blob/main/attachments_main.jpg)
 
-Table has field with table type where store all attachments which are represented like instance of class *CL_MSG_AL_ITEM*.
+> Table has field with table type where store all attachments which are represented like instance of class *CL_MSG_AL_ITEM*.
 
 ![alt text](https://github.com/Sgudkov/GOS_ATTACHMENTS/blob/main/attachments_bitem.jpg)
 
+
+*This is how you can display attachments*
+
+```abap 
+  LOOP AT lt_attachmetns ASSIGNING <ls_boitem>.
+
+    LOOP AT <ls_boitem>-t_bitem INTO lo_witem.
+      lo_witem->display( ).
+    ENDLOOP.
+
+  ENDLOOP.
+```
+*This is how you can get attachments data*
+
+```abap 
+  LOOP AT lt_attachmetns ASSIGNING <ls_boitem>.
+    LOOP AT <ls_boitem>-t_bitem INTO lo_witem.
+      TRY.
+          lo_msg_item ?= lo_witem.
+        CATCH cx_sy_move_cast_error.
+          CONTINUE.
+      ENDTRY.
+
+      CONCATENATE lo_msg_item->gs_folder lo_msg_item->gs_document INTO lv_docid.
+      lv_url = lo_attachments->get_object_content( lv_docid ).
+    ENDLOOP.
+  ENDLOOP.
+```  
