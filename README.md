@@ -39,11 +39,11 @@
    
 > This is what method returned
 
-![alt text](https://github.com/Sgudkov/GOS_ATTACHMENTS/blob/main/attachments_main.jpg)
+![alt text](https://github.com/Sgudkov/GOS_ATTACHMENTS/blob/main/attachments_main1.jpg)
 
 > Table has field with table type where store all attachments which are represented like instance of class *CL_MSG_AL_ITEM*.
 
-![alt text](https://github.com/Sgudkov/GOS_ATTACHMENTS/blob/main/attachments_bitem.jpg)
+![alt text](https://github.com/Sgudkov/GOS_ATTACHMENTS/blob/main/attachments_bitem1.jpg)
 
 
 *This is how you can display attachments*

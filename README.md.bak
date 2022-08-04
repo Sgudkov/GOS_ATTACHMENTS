@@ -26,7 +26,7 @@
   lo_attachments->set_object(
    EXPORTING
      is_object = ls_object
-   ).  
+   ).   
 ```  
 > Method *SET_OBJECT* allow to set list of objects, see interface of method.
 
