@@ -18,7 +18,3 @@
 ```  
 
 2. Run method *GET_ATTACHMENTS* to retrieve all uploaded data for BO for those attachments which you selected in step 1.
-
-> This is what method returned
-
-![alt text](https://github.com/Sgudkov/GOS_ATTACHMENTS/blob/main/attachments_main.jpg)
