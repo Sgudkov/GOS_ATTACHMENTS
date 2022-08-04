@@ -1,5 +1,5 @@
 # GOS_ATTACHMENTS
-## Get all attachmetns of bussines objects
+## Get all attachmetns of business objects
 
 ### This example show how you can retrieve all attachments of any bussines object.
 
@@ -56,3 +56,19 @@
 
   ENDLOOP.
 ```
+*This is how you can get attachments data*
+
+```abap 
+  LOOP AT lt_attachmetns ASSIGNING <ls_boitem>.
+    LOOP AT <ls_boitem>-t_bitem INTO lo_witem.
+      TRY.
+          lo_msg_item ?= lo_witem.
+        CATCH cx_sy_move_cast_error.
+          CONTINUE.
+      ENDTRY.
+
+      CONCATENATE lo_msg_item->gs_folder lo_msg_item->gs_document INTO lv_docid.
+      lv_url = lo_attachments->get_object_content( lv_docid ).
+    ENDLOOP.
+  ENDLOOP.
+```  

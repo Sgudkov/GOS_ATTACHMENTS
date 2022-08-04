@@ -1,7 +1,7 @@
 # GOS_ATTACHMENTS
-## Get all attachmetns of bussines objects
+## Get all attachmetns of business objects
 
-### This example show how you can retrieve all attachments of any bussines object.
+### This example show how you can retrieve all attachments of any business object.
 
 #### How use.
 
