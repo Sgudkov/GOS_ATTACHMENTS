@@ -28,6 +28,7 @@
      is_object = ls_object
    ).  
 ```  
+> Method *SET_OBJECT* allow to set list of objects, see interface of method.
 
 2. Run method *GET_ATTACHMENTS* to retrieve all uploaded data for BO for those attachments which you selected in step 1.
 
