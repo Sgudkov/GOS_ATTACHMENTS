@@ -6,9 +6,9 @@
 #### How use.
 
 1. Run method *SET_OBJECT*. This method define what kind of attachmetns do you want to retrieve.
-> ATTACHMENTS - retrieve all attachmetns of BO.
-> NOTES - retrieve all notes of BO.
-> URLS - retrieve all urls of BO.
+- [x] ATTACHMENTS - retrieve all attachmetns of BO.
+- [x] NOTES - retrieve all notes of BO.
+- [x] URLS - retrieve all urls of BO.
 
 *Want to get all urls of BO FMBU*
 ```abap  
