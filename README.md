@@ -46,18 +46,7 @@
 ![alt text](https://github.com/Sgudkov/GOS_ATTACHMENTS/blob/main/attachments_bitem1.jpg)
 
 
-*This is how you can display attachments*
-
-```abap 
-  LOOP AT lt_attachmetns ASSIGNING <ls_boitem>.
-
-    LOOP AT <ls_boitem>-t_bitem INTO lo_witem.
-      lo_witem->display( ).
-    ENDLOOP.
-
-  ENDLOOP.
-```
-*This is how you can get attachments data*
+*This is how you can display and edit attachments*
 
 ```abap 
   LOOP AT lt_attachmetns ASSIGNING <ls_boitem>.
@@ -74,6 +63,22 @@
       "Just display
       lo_msg_item->execute( cl_gos_attachments=>gc_cmd_display ).
 
+    ENDLOOP.
+  ENDLOOP.
+```
+*This is how you can get attachments data*
+
+```abap 
+  LOOP AT lt_attachmetns ASSIGNING <ls_boitem>.
+    LOOP AT <ls_boitem>-t_bitem INTO lo_witem.
+      TRY.
+          lo_msg_item ?= lo_witem.
+        CATCH cx_sy_move_cast_error.
+          CONTINUE.
+      ENDTRY.
+
+      CONCATENATE lo_msg_item->gs_folder lo_msg_item->gs_document INTO lv_docid.
+      lv_url = lo_attachments->get_object_content( lv_docid ).
     ENDLOOP.
   ENDLOOP.
 ```  
