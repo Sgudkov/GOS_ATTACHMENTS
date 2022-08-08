@@ -68,8 +68,12 @@
           CONTINUE.
       ENDTRY.
 
-      CONCATENATE lo_msg_item->gs_folder lo_msg_item->gs_document INTO lv_docid.
-      lv_url = lo_attachments->get_object_content( lv_docid ).
+      "Edit trigger commit work even if you cancel changed data
+      lo_msg_item->execute( cl_gos_attachments=>gc_cmd_edit ).
+
+      "Just display
+      lo_msg_item->execute( cl_gos_attachments=>gc_cmd_display ).
+
     ENDLOOP.
   ENDLOOP.
 ```  
