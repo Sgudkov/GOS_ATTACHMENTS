@@ -84,6 +84,7 @@ CLASS lcl_gos_attachments IMPLEMENTATION.
       CREATE OBJECT <ls_borid>-o_att_list
         EXPORTING
           io_object      = lo_bitem
+          ip_mode        = 'D'
           ip_notes       = <ls_borid>-notes
           ip_attachments = <ls_borid>-attachments
           ip_urls        = <ls_borid>-urls.
