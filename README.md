@@ -15,7 +15,12 @@
   DATA: lo_attachments TYPE REF TO lcl_gos_attachments,
         ls_object      TYPE lcl_gos_attachments=>mty_s_borid,
         lt_attachmetns TYPE lcl_gos_attachments=>mty_t_borid,
-        lo_witem       TYPE REF TO cl_browser_item.
+        lo_witem       TYPE REF TO cl_browser_item,
+		lo_msg_item    TYPE REF TO cl_msg_al_item,
+		lv_typid       TYPE swo_typeid,
+		lv_url         TYPE string,
+		lv_docid       TYPE so_entryid,
+		ls_borident    TYPE borident.
 		
   CREATE OBJECT lo_attachments.	
   
@@ -87,6 +92,8 @@
 *Another way display, edit, create and export attachments*
 
 ```abap 
+  MOVE-CORRESPONDING ls_object TO ls_borident.  
+
   "Allow to create attachemtns, note, urls. Need to use commit after creation.
   "See more variants in class CL_GOS_DOCUMENT_SERVICE
   lo_attachments->mo_services->create( EXPORTING is_object = ls_borident  ).
