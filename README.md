@@ -46,6 +46,23 @@
 ![alt text](https://github.com/Sgudkov/GOS_ATTACHMENTS/blob/main/attachments_bitem1.jpg)
 
 
+*This is how you can get attachments data*
+
+```abap 
+  LOOP AT lt_attachmetns ASSIGNING <ls_boitem>.
+    LOOP AT <ls_boitem>-t_bitem INTO lo_witem.
+      TRY.
+          lo_msg_item ?= lo_witem.
+        CATCH cx_sy_move_cast_error.
+          CONTINUE.
+      ENDTRY.
+
+      CONCATENATE lo_msg_item->gs_folder lo_msg_item->gs_document INTO lv_docid.
+      lv_url = lo_attachments->get_object_content( lv_docid ).
+    ENDLOOP.
+  ENDLOOP.
+```  
+
 *This is how you can display and edit attachments*
 
 ```abap 
@@ -66,9 +83,14 @@
     ENDLOOP.
   ENDLOOP.
 ```
-*This is how you can get attachments data*
+
+*Another way display, edit, create and export attachments*
 
 ```abap 
+  "Allow to create attachemtns, note, urls. Need to use commit after creation.
+  "See more variants in class CL_GOS_DOCUMENT_SERVICE
+  lo_attachments->mo_services->create( EXPORTING is_object = ls_borident  ).
+
   LOOP AT lt_attachmetns ASSIGNING <ls_boitem>.
     LOOP AT <ls_boitem>-t_bitem INTO lo_witem.
       TRY.
@@ -77,8 +99,19 @@
           CONTINUE.
       ENDTRY.
 
-      CONCATENATE lo_msg_item->gs_folder lo_msg_item->gs_document INTO lv_docid.
-      lv_url = lo_attachments->get_object_content( lv_docid ).
+      "Display single row
+      CONCATENATE lo_msg_item->gs_folder lo_msg_item->gs_document INTO lv_typid.
+      lo_attachments->mo_services->display_attachment( EXPORTING ip_attachment = lv_typid  ).
+
+      "Edit single row
+      lo_attachments->mo_services->edit_attachment( EXPORTING ip_attachment = lv_typid  ).
+      
+      "Just export attachments
+      lo_attachments->mo_services->export_attachment( EXPORTING ip_attachment = lv_typid ).
+      
     ENDLOOP.
   ENDLOOP.
+
+
 ```  
+

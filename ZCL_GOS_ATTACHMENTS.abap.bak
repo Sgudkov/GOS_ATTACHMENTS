@@ -128,4 +128,26 @@ CLASS lcl_gos_attachments IMPLEMENTATION.
 
   ENDMETHOD.                    "get_attachments
 
+  METHOD get_object_content.
+    DATA lt_obj_content TYPE TABLE OF solisti1.
+
+    FIELD-SYMBOLS: <ls_conent> TYPE solisti1.
+
+    CALL FUNCTION 'SO_DOCUMENT_READ_API1'
+      EXPORTING
+        document_id                = iv_docid
+      TABLES
+        object_content             = lt_obj_content
+      EXCEPTIONS
+        document_id_not_exist      = 1
+        operation_no_authorization = 2
+        x_error                    = 3
+        OTHERS                     = 4.
+
+    READ TABLE lt_obj_content ASSIGNING <ls_conent> INDEX 1.
+    IF sy-subrc = 0 AND <ls_conent>-line(5) = '&KEY&'.
+      rv_content = <ls_conent>-line+5.
+    ENDIF.
+  ENDMETHOD.                    "get_object_content
+  
 ENDCLASS.                    "lcl_gos_attachments IMPLEMENTATION
