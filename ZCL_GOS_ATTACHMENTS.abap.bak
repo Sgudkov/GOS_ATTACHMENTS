@@ -1,4 +1,3 @@
-
 *----------------------------------------------------------------------*
 *       CLASS lcl_gos_attachments DEFINITION
 *----------------------------------------------------------------------*
@@ -20,19 +19,22 @@ CLASS lcl_gos_attachments DEFINITION.
       mty_t_borid TYPE STANDARD TABLE OF mty_s_borid WITH DEFAULT KEY .
 
     DATA:
-      mt_objects TYPE TABLE OF mty_s_borid .
+      mt_objects TYPE TABLE OF mty_s_borid,
+      mo_services TYPE REF TO cl_gos_document_service.
 
 
     METHODS:
+      constructor,
       set_object
         IMPORTING
-          is_object   TYPE mty_s_borid
-          it_objects  TYPE mty_t_borid,
+          is_object   TYPE mty_s_borid OPTIONAL
+          it_objects  TYPE mty_t_borid OPTIONAL,
        get_attachments RETURNING value(rt_attachments) TYPE mty_t_borid,
-	   get_object_content
+      get_object_content
         IMPORTING
           iv_docid TYPE so_entryid
           RETURNING value(rv_content) TYPE string.
+
 
 ENDCLASS.                    "lcl_gos_attachments DEFINITION
 
@@ -43,6 +45,10 @@ ENDCLASS.                    "lcl_gos_attachments DEFINITION
 *
 *----------------------------------------------------------------------*
 CLASS lcl_gos_attachments IMPLEMENTATION.
+
+  METHOD constructor.
+    CREATE OBJECT mo_services.
+  ENDMETHOD.                    "constructor
 
   METHOD set_object.
     IF is_object IS NOT INITIAL.
@@ -62,6 +68,7 @@ CLASS lcl_gos_attachments IMPLEMENTATION.
           lo_mitem               TYPE REF TO cl_container_item,
           lo_gos_attachment_list TYPE REF TO cl_gos_attachments,
           ls_borident            TYPE borident.
+
 
     DATA: li_service     TYPE REF TO if_link_service,
           lo_service     TYPE REF TO if_link_service,
@@ -149,5 +156,5 @@ CLASS lcl_gos_attachments IMPLEMENTATION.
       rv_content = <ls_conent>-line+5.
     ENDIF.
   ENDMETHOD.                    "get_object_content
-  
+
 ENDCLASS.                    "lcl_gos_attachments IMPLEMENTATION

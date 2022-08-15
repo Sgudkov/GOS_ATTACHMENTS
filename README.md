@@ -118,7 +118,26 @@
       
     ENDLOOP.
   ENDLOOP.
-
-
+ 
 ```  
 
+*This is how you can display all attachments in ALV*
+
+> Need to call go_attachments->display_all( '0400000004' ). in PBO
+> Popup screen with ALV will be created
+
+```abap 
+CLASS: lcl_gos_attachments DEFINITION DEFERRED.
+
+DATA go_attachments TYPE REF TO lcl_gos_attachments.
+
+
+MODULE status_0900 OUTPUT.
+*  SET PF-STATUS 'xxxxxxxx'.
+*  SET TITLEBAR 'xxx'.
+
+  go_attachments->display_all( '0400000000' ).
+
+ENDMODULE.                 " STATUS_0900  OUTPUT
+
+``` 
