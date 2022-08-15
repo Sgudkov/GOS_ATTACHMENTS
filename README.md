@@ -16,11 +16,11 @@
         ls_object      TYPE lcl_gos_attachments=>mty_s_borid,
         lt_attachmetns TYPE lcl_gos_attachments=>mty_t_borid,
         lo_witem       TYPE REF TO cl_browser_item,
-		lo_msg_item    TYPE REF TO cl_msg_al_item,
-		lv_typid       TYPE swo_typeid,
-		lv_url         TYPE string,
-		lv_docid       TYPE so_entryid,
-		ls_borident    TYPE borident.
+	lo_msg_item    TYPE REF TO cl_msg_al_item,
+	lv_typid       TYPE swo_typeid,
+	lv_url         TYPE string,
+	lv_docid       TYPE so_entryid,
+	ls_borident    TYPE borident.
 		
   CREATE OBJECT lo_attachments.	
   
