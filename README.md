@@ -1,7 +1,7 @@
 # GOS_ATTACHMENTS
 ## Get all attachmetns of business objects
 
-### This example show how you can retrieve all attachments of any business object.
+### This example show how you can retrieve all attachments of any business object and then use CRUD.
 
 #### How use.
 
