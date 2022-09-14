@@ -4,10 +4,13 @@
 
 #### How use.
 
+>Source code [here](https://github.com/Sgudkov/GOS_ATTACHMENTS/blob/main/ZCL_GOS_ATTACHMENTS.abap).
+
 1. Run method *SET_OBJECT*. This method define what kind of attachmetns do you want to retrieve.
 - [x] ATTACHMENTS - retrieve all attachmetns of BO.
 - [x] NOTES - retrieve all notes of BO.
 - [x] URLS - retrieve all urls of BO.
+
 
 *Want to get all urls of BO FMBU*
 ```abap  
