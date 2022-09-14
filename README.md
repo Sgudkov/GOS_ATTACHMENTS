@@ -2,9 +2,9 @@
 
 ### This example show how you can retrieve all attachments of any business object and then use CRUD.
 
-#### How use.
-
 >Source code [here](https://github.com/Sgudkov/GOS_ATTACHMENTS/blob/main/ZCL_GOS_ATTACHMENTS.abap).
+
+#### How use.
 
 1. Run method *SET_OBJECT*. This method define what kind of attachmetns do you want to retrieve.
 - [x] ATTACHMENTS - retrieve all attachmetns of BO.
